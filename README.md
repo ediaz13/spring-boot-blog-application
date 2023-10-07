@@ -7,11 +7,10 @@ This is an ENTIRE application for Java Spring Boot using:
 - Spring Security
 - Model View Controller (MVC) architecture
 
-**I walk through how to build this yourself on YouTube**: https://youtu.be/7iWlCl35p9o
 
 ## Development Instructions
 
-- `git clone https://github.com/wazooinc/spring-boot-blog-application.git`
+- `git clone https://github.com/ediaz13/spring-boot-blog-application.git`
 - `cd spring-boot-blog-application`
 - open in favorite editor
 
