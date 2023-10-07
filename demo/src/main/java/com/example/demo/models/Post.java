@@ -1,32 +1,38 @@
 package com.example.demo.models;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import jakarta.persistence.*;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@ToString
 public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    Long id;
 
-    private String title;
+    String title;
 
     @Column(columnDefinition = "TEXT")
-    private String body;
+    String body;
 
-    private LocalDateTime createdAt;
+    LocalDateTime createdAt;
+
+    LocalDateTime updatedAt;
 
     @NotNull
     @ManyToOne
     @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
-    private Account account;
-
+    Account account;
 
 }

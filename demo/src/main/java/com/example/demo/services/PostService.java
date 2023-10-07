@@ -2,7 +2,7 @@ package com.example.demo.services;
 
 import com.example.demo.models.Post;
 import com.example.demo.repositories.PostRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -10,24 +10,29 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class PostService {
 
-    @Autowired
-    private PostRepository postRepository;
+    private final PostRepository postRepository;
 
-    public Optional<Post> getOptionalPost(Long id) {
+    public Optional<Post> getById(Long id) {
         return postRepository.findById(id);
     }
 
     public List<Post> getAll() {
-        return  postRepository.findAll();
+        return postRepository.findAll();
     }
 
     public Post save(Post post) {
         if (post.getId() == null) {
             post.setCreatedAt(LocalDateTime.now());
         }
-
+        post.setUpdatedAt(LocalDateTime.now());
         return postRepository.save(post);
     }
+
+    public void delete(Post post) {
+        postRepository.delete(post);
+    }
+
 }

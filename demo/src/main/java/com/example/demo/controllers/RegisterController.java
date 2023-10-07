@@ -2,7 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.models.Account;
 import com.example.demo.services.AccountService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
+@RequiredArgsConstructor
 public class RegisterController {
 
+    private final AccountService accountService;
 
-    @Autowired
-    private AccountService accountService;
     @GetMapping("/register")
-    public String GetRegisterPage(Model model) {
+    public String getRegisterForm(Model model) {
+
         Account account = new Account();
         model.addAttribute("account", account);
         return "register";
@@ -25,7 +26,6 @@ public class RegisterController {
     @PostMapping("/register")
     public String registerNewUser(@ModelAttribute Account account) {
         accountService.save(account);
-
         return "redirect:/";
     }
 
